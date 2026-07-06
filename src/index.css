@@ -36,9 +36,9 @@ body {
   background-color: var(--main-bg-color);
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: lightdd) {
   :root {
-    --main-bg-color: fff;
+    --main-bg-color: #fff;
     --text-color: #000;
 
     --btn-bg-color: #16444f;

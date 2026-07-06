@@ -1,20 +1,20 @@
 import { Button } from "../Button";
 import cls from "./QuestionCard.module.css";
 
-export const QuestionCard = () => {
+export const QuestionCard = ({card}) => {
   return (
     <div className={cls.card}>
       <div className={cls.cardLabels}>
-        <div>Level: 1</div>
-        <div>Not Compleated</div>
+        <div>Level: {card.level} </div>
+        <div>Not {card.completed ? "Completed" : "Not Completed"}</div>
       </div>
 
-      <h5 className={cls.cardTitle}> Что такое JSX?</h5>
+      <h5 className={cls.cardTitle}> {card.question}</h5>
 
       <div className={cls.cardAnswers}>
         <label>short answer: </label>
         <p className={cls.cardAnswer}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. In, quaerat!
+          {card.answer}
         </p>
       </div>
 
