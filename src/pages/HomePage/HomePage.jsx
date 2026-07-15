@@ -5,8 +5,12 @@ import { Loader } from "../../components/Loader";
 import { useFetch } from "../../hooks/useFetch";
 import cls from "./HomePage.module.css";
 import { SearchInput } from "../../components/SearchInput";
+import { Button } from "../../components/Button";
+
+const DEFAULT_RER_RAGE = 10;
 
 export const HomePage = () => {
+  const [searchParams, setSearchParams] = useState(`?_page=1&_per_page=${DEFAULT_RER_RAGE}`);
   const [questions, setQuestions] = useState({});
   const [searchValue, setSearchValue] = useState("");
   const [sortSelectValue, setSortSelectValue] = useState("");
@@ -22,9 +26,7 @@ export const HomePage = () => {
   const cards = useMemo(() => {
     if (questions?.data) {
       if (searchValue.trim()) {
-        return questions.data.filter((d) =>
-          d.question.toLowerCase().includes(searchValue.trim().toLowerCase()),
-        );
+        return questions.data.filter((d) => d.question.toLowerCase().includes(searchValue.trim().toLowerCase()));
       } else {
         return questions.data;
       }
@@ -32,10 +34,15 @@ export const HomePage = () => {
     return [];
   }, [questions, searchValue]);
 
+  const pagination = useMemo(() => {
+    const totalCardsCount = questions?.pages || 0;
+
+    return Array(totalCardsCount).fill(0).map((_, i) => i + 1);
+  }, [questions]);
+
   useEffect(() => {
-    // getQuestions(`react?${sortSelectValue}`);
-    getQuestions(`react?_page=1&_per_page=5`);
-  }, [sortSelectValue]);
+    getQuestions(`react${searchParams}`);
+  }, [searchParams]);
 
   const onSearchChangeHandler = (e) => {
     setSearchValue(e.target.value);
@@ -43,6 +50,10 @@ export const HomePage = () => {
 
   const onSortSelectChangeHandler = (e) => {
     setSortSelectValue(e.target.value);
+
+    const sortQuery = e.target.value ? `&${e.target.value}` : "";
+
+    setSearchParams(`?_page=1&_per_page=${DEFAULT_RER_RAGE}${sortQuery}`);
   };
 
   return (
@@ -68,6 +79,14 @@ export const HomePage = () => {
       {/* {error && <p>Page is not difind..</p>} */}
       {cards.length === 0 && <p className={cls.noCardsInfo}>No cards ... </p>}
       <QuestionCardList cards={cards} />
+<div className={cls.paginationContainer}>
+  
+      {
+        pagination.map((value) => {
+          return <Button key={value}>{value}</Button>
+        })
+      }
+</div>
     </>
   );
 };
