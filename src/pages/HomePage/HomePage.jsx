@@ -7,7 +7,7 @@ import cls from "./HomePage.module.css";
 import { SearchInput } from "../../components/SearchInput";
 
 export const HomePage = () => {
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState({});
   const [searchValue, setSearchValue] = useState("");
   const [sortSelectValue, setSortSelectValue] = useState("");
 
@@ -20,13 +20,21 @@ export const HomePage = () => {
   });
 
   const cards = useMemo(() => {
-    return questions.filter((d) =>
-      d.question.toLowerCase().includes(searchValue.trim().toLowerCase()),
-    );
+    if (questions?.data) {
+      if (searchValue.trim()) {
+        return questions.data.filter((d) =>
+          d.question.toLowerCase().includes(searchValue.trim().toLowerCase()),
+        );
+      } else {
+        return questions.data;
+      }
+    }
+    return [];
   }, [questions, searchValue]);
 
   useEffect(() => {
-    getQuestions(`react?${sortSelectValue}`);
+    // getQuestions(`react?${sortSelectValue}`);
+    getQuestions(`react?_page=1&_per_page=5`);
   }, [sortSelectValue]);
 
   const onSearchChangeHandler = (e) => {
