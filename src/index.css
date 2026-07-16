@@ -36,7 +36,7 @@ body {
   background-color: var(--main-bg-color);
 }
 
-@media (prefers-color-scheme: lighta) {
+@media (prefers-color-scheme: lights) {
   :root {
     --main-bg-color: #fff;
     --text-color: #000;
