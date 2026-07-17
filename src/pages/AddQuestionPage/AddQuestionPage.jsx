@@ -4,6 +4,7 @@ import cls from "./AddQuestionPage.module.css";
 import { delayFn } from "../../helpers/delayFn";
 import { toast } from "react-toastify";
 import { API_URL } from "../../constants";
+import { Loader } from "../../components/Loader";
 
 const createCardAction = async (_prevState, formData) => {
 try {
@@ -40,9 +41,10 @@ try {
 }
 }
 
-export const AddQuestionPage = () => {
+const AddQuestionPage = () => {
     const [formState, formAction, isPending] = useActionState(createCardAction, {clearForm: true});
     return <>
+    {isPending && <Loader />}
         <h1 className={cls.formTitle}>
             Add new question
         </h1>
@@ -93,7 +95,6 @@ export const AddQuestionPage = () => {
                         id="resourcesField"
                         cols="30"
                         rows="2"
-                        required
                         placeholder="please enter resources separeted by commas"></textarea>
                 </div>
                 <div className={cls.formControl}>
@@ -127,3 +128,5 @@ export const AddQuestionPage = () => {
         </div>
     </>
 };
+
+export default AddQuestionPage;
