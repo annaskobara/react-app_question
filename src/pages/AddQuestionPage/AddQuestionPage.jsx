@@ -26,12 +26,17 @@ try {
         })
     })
 
+    if (response.status === 404) {
+        throw new Error(response.statusText);
+    }
+
     const question = response.json();
     toast.success("New question is succesfully created!")
 
     return isClearForm ? {} : question;
 } catch (error) {
-    toast.error(error.message)
+    toast.error(error.message);
+    return {};
 }
 }
 
