@@ -98,7 +98,7 @@ export const QuestionPage = () => {
                         }
                     </label>
 
-                    <Button onClick={() => navigate(`/edituestion/${card.id}`)} isDisabled={isCardUodating}>Edit Question</Button>
+                    <Button onClick={() => navigate(`/editquestion/${card.id}`)} isDisabled={isCardUodating}>Edit Question</Button>
                     <Button onClick={() => navigate("/")} isDisabled={isCardUodating}>Back</Button>
                 </div>
             }
