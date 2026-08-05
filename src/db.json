@@ -14,18 +14,6 @@
       "editDate": "03.02.2025, 19:49"
     },
     {
-      "id": "2",
-      "question": "Що таке JSX?",
-      "answer": "JSX — це синтаксичне розширення JavaScript для React.",
-      "description": "JSX дозволяє писати HTML-подібний код у JavaScript, який потім транспілюється у виклики `React.createElement`. Він полегшує створення та візуальне представлення структури компонентів.",
-      "resources": [
-        "https://react.dev/learn/writing-markup-with-jsx"
-      ],
-      "level": 2,
-      "completed": false,
-      "editDate": "03.02.2025, 20:25"
-    },
-    {
       "id": "3",
       "question": "Який основний принцип роботи React?",
       "answer": "React використовує Virtual DOM для оптимізації рендерингу.",
@@ -35,19 +23,7 @@
       ],
       "level": 2,
       "completed": false,
-      "editDate": "03.02.2025, 19:01"
-    },
-    {
-      "id": "4",
-      "question": "Як створити компонент у React?",
-      "answer": "Компонент можна створити як функцію або клас.",
-      "description": "Функціональні компоненти — це функції, які приймають `props` і повертають JSX. Класові компоненти — це класи, що успадковуються від `React.Component`, з методом `render`.",
-      "resources": [
-        "https://react.dev/learn/your-first-component"
-      ],
-      "level": 1,
-      "completed": false,
-      "editDate": "18.07.2026, 14:47"
+      "editDate": "29.07.2026, 13:33"
     },
     {
       "id": "5",
@@ -565,6 +541,17 @@
       "level": 1,
       "completed": false,
       "editDate": "18.07.2026, 14:48"
+    },
+    {
+      "id": "895f",
+      "question": "dsff",
+      "answer": "ddv",
+      "description": "dvd",
+      "resources": [
+        "vdv"
+      ],
+      "level": 1,
+      "completed": false
     }
   ]
 }

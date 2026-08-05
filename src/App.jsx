@@ -1,27 +1,42 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { MainLayout } from "./components/MainLayout";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { QuestionPage } from "./pages/QuestionPage";
 import { AddQuestionPageLazy } from "./pages/AddQuestionPage";
 import { EditQuestionPage } from "./pages/EditQuestionPage";
+import { AuthProvider } from "./auth/AuthProvider";
+import { useAuth } from "./hooks/useAuth";
+import { ForbiddenPage } from "./pages/ForbiddenPage";
+
+const ProtectedRoutes = () => {
+  const { isAuth } = useAuth();
+  const location = useLocation();
+
+  return isAuth ? <Outlet /> : <Navigate to="/forbidden" state={{from: location.pathname}} replace/>;
+};
 
 function App() {
   // return <MainLayout />;
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/forbidden" element={<div>forbidden !!! </div>} />
-          <Route path="/addquestion" element={<AddQuestionPageLazy />} />
-          <Route path="/question/:id" element={<QuestionPage />} />
-          <Route path="/editquestion/:id" element={<EditQuestionPage />} />
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/forbidden" element={<ForbiddenPage />} />
+            <Route path="/question/:id" element={<QuestionPage />} />
 
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/addquestion" element={<AddQuestionPageLazy />} />
+              <Route path="/editquestion/:id" element={<EditQuestionPage />} />
+            </Route>
+
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
