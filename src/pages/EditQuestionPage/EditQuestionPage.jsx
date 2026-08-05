@@ -5,23 +5,26 @@ import { useEffect, useState } from "react";
 import { Loader } from "../../components/Loader";
 import { EditQuestion } from "./EditQuestion";
 
-export const EditQuestionPage = () => {
-    const {id} = useParams();
-    const [question, setQuestion] = useState(null);
+const EditQuestionPage = () => {
+  const { id } = useParams();
+  const [question, setQuestion] = useState(null);
 
-    const [fetchQuestion, isQuestionLoading] = useFetch(async () => {
-        const responce = await fetch(`${API_URL}/react/${id}`);
-        const data = await responce.json();
+  const [fetchQuestion, isQuestionLoading] = useFetch(async () => {
+    const responce = await fetch(`${API_URL}/react/${id}`);
+    const data = await responce.json();
 
-        setQuestion(data);
-    });
+    setQuestion(data);
+  });
 
-    useEffect(() => {
-        fetchQuestion();
-    }, []);
-    return <>
-        {isQuestionLoading && <Loader />}
-        {question && <EditQuestion initialState={question}/>}
-        
-        </>
-}
+  useEffect(() => {
+    fetchQuestion();
+  }, []);
+  return (
+    <>
+      {isQuestionLoading && <Loader />}
+      {question && <EditQuestion initialState={question} />}
+    </>
+  );
+};
+
+export default EditQuestionPage;
