@@ -1,16 +1,49 @@
-# React + Vite
+# ⚛️ React App Question (React Question Cards Application)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-додаток для підготовки до співбесід з React. Дозволяє переглядати, фільтрувати, сортувати питання за складністю та статусом вивчення, а також керувати базою питань через адмін-панель.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Основний функціонал
 
-## React Compiler
+### 🔍 Перегляд та Пошук
+- **Пошук у реальному часі:** Пошук питань за ключовими словами чи назвою.
+- **Сортування та Фільтрація:**
+  - За рівнем складності (`level ASC` / `level DESC`).
+  - За статусом вивчення (`completed ASC` / `completed DESC`).
+- **Пагінація:** Зручна навігація за допомогою пагінації з можливістю вибору кількості карток на сторінці (10, 20 тощо).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🃏 Картки питань
+- Відображення рівня складності (Level 1, Level 2, Level 3) та статусу (`Completed` / `Not Completed`).
+- Швидка відповідь (`short answer`) на картці.
+- Детальний перегляд питання з вичерпним описом та корисними посиланнями/ресурсами (`Resources`).
+- Позначення питання як засвоєного (`mark question as completed`).
 
-## Expanding the ESLint configuration
+### 🔐 Керування контентом (Авторизація / Admin)
+- **Login / Logout:** Система входу для адміністратора.
+- **Додавання питань (`Add Question`):**
+  - Поле для питання (`Question`)
+  - Коротка відповідь (`Short Answer`)
+  - Повний опис (`Description`)
+  - Ресурси / Посилання (`Resources`)
+  - Вибір рівня складності (`Level`)
+  - Опція автоматичного очищення форми після відправки (`clear form after submitting`).
+- **Редагування питань (`Edit Question`):** Можливість оновлювати існуючі питання через детальний перегляд.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Технологічний стек
+
+- **Frontend:** React, TypeScript / JavaScript
+- **Стилізація:** CSS Modules / SCSS / Tailwind CSS
+- **Стан та Маршрутизація:** React Router
+- **Запити / Асинхронність:** Loader / Spinner для індикацій завантаження даних
+
+---
+
+## 📦 Встановлення та запуск
+
+1. **Клонуйте репозиторій:**
+   ```bash
+   git clone [https://github.com/annaskobara/react-app_question.git](https://github.com/annaskobara/react-app_question.git)
+   cd react-app_question
